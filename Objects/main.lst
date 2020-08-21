@@ -1,0 +1,519 @@
+HMS800 series Assembler  /cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s 			page 1
+
+
+   1                 	;;;-----------------------------------------
+   2                 	;;; Start HMS800 assembly output
+   3                 	;;; HMS C compiler 3.0.0
+   4                 	;;; Command:	/cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/cc1 -lang-c -iprefix /cygdrive
+   5                 	;;; Compiled:	Fri Aug 21 09:39:50 2020
+   6                 	;;; (META)compiled by HMS800 C Compiler version 3.4.4 (cygming special, gdc 0.12, using dmd 0.125).
+   7                 	;;;-----------------------------------------
+   8                 		.file	"main.c"
+   9                 	    ;; macro definitions for internal use
+  10                 		;; These definitions are generated automatically.
+  11                 		
+  12                 		.macro h_xgdx
+  13                 		PUSH	X
+  14                 		PUSH	A
+  15                 		LDA	_.AHI
+  16                 		LDX	_.HHI
+  17                 		XAX
+  18                 		STA	_.AHI
+  19                 		STX	_.HHI
+  20                 		POP	A
+  21                 		POP	X
+  22                 		XAX
+  23                 		.endm
+  24                 	
+  25                 		.macro h_xgdy
+  26                 		PUSH	Y
+  27                 		PUSH	A
+  28                 		LDY	_.YHI
+  29                 		LDA	_.AHI
+  30                 		XAY
+  31                 		STY	_.YHI
+  32                 		STA	_.AHI
+  33                 		POP	A
+  34                 		POP	Y
+  35                 		XAY
+  36                 		.endm
+  37                 	
+  38                 		.macro h_coma
+  39                 	   	PUSH	A
+  40                 	   	LDA	_.AHI+1
+  41                 	   	EOR	#0FFh
+  42                 	   	STA	_.AHI+1
+  43                 	   	POP	A
+  44                 		.endm
+  45                 	
+  46                 	  	.macro h_comb
+  47                 	   	PUSH	A
+  48                 	   	LDA	_.AHI
+  49                 	   	EOR	#0FFh
+  50                 	   	STA	_.AHI
+  51                 	   	POP	A
+  52                 		.endm
+  53                 	
+  54                 		.macro rola 
+  55                 		CLRC
+  56                 		ROL		A
+  57                 		BCC		_._.L\@
+HMS800 series Assembler  /cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s 			page 2
+
+
+  58                 		SETA1	A.0
+  59                 	_._.L\@:
+  60                 		.endm
+  61                 	
+  62                 		.macro rora 
+  63                 		CLRC
+  64                 		ROR		A
+  65                 		BCC		_._.L\@
+  66                 		SETA1	A.7
+  67                 	_._.L\@:
+  68                 		.endm
+  69                 	
+  70                 	  	.macro asra 
+  71                 	  	LSR		A
+  72                 	  	BBC		A.6, _._.L\@
+  73                 	  	SETA1	A.7
+  74                 	_._.L\@:
+  75                 		.endm
+  76                 	  
+  77                 	
+  78                 	  	.macro deca
+  79                 	  	DEC	_.AHI
+  80                 		.endm
+  81                 	  
+  82                 	
+  83                 	  	.macro	lsrd
+  84                 	  	LSR	_.AHI+1
+  85                 	  	ROR	_.AHI
+  86                 		.endm
+  87                 	  
+  88                 	
+  89                 	  	.macro tap
+  90                 	  	PUSH	Y
+  91                 		LDY	_.AHI
+  92                 		PUSH	Y
+  93                 	  	POP	PSW
+  94                 	  	POP	Y
+  95                 		.endm
+  96                 		
+  97                 	
+  98                 		.macro _PUSH_HI_REG
+  99                 		LDA	_.AHI+1
+ 100                 		PUSH	A
+ 101                 		LDA	_.AHI
+ 102                 		PUSH	A
+ 103                 		LDA	_.HHI+1
+ 104                 		PUSH	A
+ 105                 		LDA	_.HHI
+ 106                 		PUSH	A
+ 107                 		LDA	_.YHI+1
+ 108                 		PUSH	A
+ 109                 		LDA	_.YHI
+ 110                 		PUSH	A
+ 111                 		.endm
+ 112                 		
+ 113                 	
+ 114                 		.macro _POP_HI_REG
+HMS800 series Assembler  /cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s 			page 3
+
+
+ 115                 		POP	A
+ 116                 		STA	_.YHI
+ 117                 		POP	A
+ 118                 		STA	_.YHI+1
+ 119                 		POP	A
+ 120                 		STA	_.HHI
+ 121                 		POP	A
+ 122                 		STA	_.HHI+1
+ 123                 		POP	A
+ 124                 		STA	_.AHI
+ 125                 		POP	A
+ 126                 		STA	_.AHI+1
+ 127                 		.endm
+ 128                 		
+ 129                 	
+ 130                 		
+ 131                 	_.DPGR:	EQU	252
+ 132                 	
+ 133                 	_.RPR:	EQU	207
+ 134                 		.section	.debug_abbrev
+ 135                 	.Ldebug_abbrev0:
+ 136                 		.section	.text
+ 137                 	.Ltext0:
+ 138                 		.section	.debug_info
+ 139                 	.Ldebug_info0:
+ 140                 		.section	.debug_line
+ 141                 	.Ldebug_line0:
+ 142                 		extern	_memcpy
+ 143                 		.section	.text
+ 144                 	.LC0:
+ 145 0000 48 65 6C 6C 		.string	"Hello, World!"
+ 145      6F 2C 20 57 
+ 145      6F 72 6C 64 
+ 145      21 00 
+ 146                 		.sect	.text
+ 147                 		.globl	_main
+ 148                 		.type	_main,@function
+ 149                 	_main:
+ 150                 	.LFB1:
+ 151                 	.LM1:
+ 152                 	.LBB2:
+ 153                 		;; Start to push FP
+ 154 000e CC 01       		LDX	_.frame+1
+ 155 0010 2E          		PUSH	X
+ 156 0011 CC 00       		LDX	_.frame
+ 157 0013 2E          		PUSH	X
+ 158                 		;; Complete to push FP
+ 159                 		;; Start RTL addhi_sp
+ 160 0014 AE          		TSPX
+ 161 0015 EE          		XAX
+ 162 0016 20          		CLRC
+ 163 0017 04 F2       		ADC	#-14
+ 164 0019 EE          		XAX
+ 165 001a 8E          		TXSP
+ 166                 		;; Complete RTL addhi_sp (3) - Must be checked
+ 167                 		;; Start RTL movhi_2
+ 168                 		;; Start hms800_gen_movhi
+HMS800 series Assembler  /cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s 			page 4
+
+
+ 169 001b AE          		TSPX
+ 170 001c EC 00       		STX	_.frame
+ 171 001e E4 01 01    		LDM	_.frame+1,#1
+ 172                 		;; Complete hms800_gen_movhi (50)
+ 173                 		;; Complete RTL movhi_2
+ 174                 	.LM2:
+ 175                 		;; Start RTL movhi_2
+ 176                 		;; Start hms800_gen_movhi
+ 177 0021 E4 0E 00    		LDM	_.d5,#(14 & 0FFh)
+ 178 0024 E4 00 01    		LDM	_.d5+1,#(14>>8)&0FFh
+ 179                 		;; Complete hms800_gen_movhi (11)
+ 180                 		;; Complete RTL movhi_2
+ 181                 		;; Start RTL movhi_2
+ 182                 		;; Start hms800_gen_movhi
+ 183 0027 E4 00 00    		LDM	_.d3,#<(.LC0)
+ 184 002a E4 00 01    		LDM	_.d3+1,#>(.LC0)
+ 185                 		;; Complete hms800_gen_movhi (16)
+ 186                 		;; Complete RTL movhi_2
+ 187                 		;; Start RTL movhi_2
+ 188                 		;; Start hms800_gen_movhi
+ 189 002d 7D 00       		LDYA	_.frame
+ 190 002f DD 00       		STYA	_.d7
+ 191                 		;; Complete hms800_gen_movhi (17)
+ 192                 		;; Complete RTL movhi_2
+ 193                 		;; Start RTL addhi3
+ 194 0031 3E 00       		LDY	#(1>>8)&0FFh
+ 195 0033 C4 01       		LDA	#(1 & 0FFh)
+ 196 0035 1D 00       		ADDW	_.d7
+ 197 0037 DD 00       		STYA	_.d1
+ 198                 		;; Complete RTL addhi3 (9)
+ 199                 		;; Start RTL call_value
+ 200 0039 3B 00 00    		CALL	!_memcpy	; bsr	_memcpy
+ 201                 		;; Complete RTL call_value (2-1)
+ 202                 	.LM3:
+ 203                 		;; Start RTL movhi_const0
+ 204 003c E4 00 00    		LDM	_.d1,#0
+ 205 003f E4 00 01    		LDM	_.d1+1,#0
+ 206                 		;; Complete RTL movhi_const0 (5)
+ 207                 	.LBE2:
+ 208                 	.LM4:
+ 209                 		;; Start RTL addhi_sp
+ 210 0042 AE          		TSPX
+ 211 0043 EE          		XAX
+ 212 0044 20          		CLRC
+ 213 0045 04 0E       		ADC	#14
+ 214 0047 EE          		XAX
+ 215 0048 8E          		TXSP
+ 216                 		;; Complete RTL addhi_sp (3) - Must be checked
+ 217                 		;; Start to pop FP
+ 218 0049 2D          		POP	X
+ 219 004a EC 00       		STX	_.frame
+ 220 004c 2D          		POP	X
+ 221 004d EC 01       		STX	_.frame+1
+ 222                 		;; Complete to pop FP
+ 223                 		;; Start RTL return_void
+ 224 004f 6F          		RET
+ 225                 		;; Complete RTL return_void (3)
+HMS800 series Assembler  /cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s 			page 5
+
+
+ 226                 	.LFE1:
+ 227                 	.Lfe1:
+ 228                 		.size	_main,.Lfe1-_main
+ 229                 		.section	.text
+ 230                 	.Letext0:
+ 231                 		.section	.debug_line
+ 232 0000 40 00 00 00 		.4byte	.LELT0-.LSLT0
+ 233                 	.LSLT0:
+ 234 0004 02 00       		.2byte	0x2
+ 235 0006 1A 00 00 00 		.4byte	.LELTP0-.LASLTP0
+ 236                 	.LASLTP0:
+ 237 000a 04          		.byte	0x4
+ 238 000b 01          		.byte	0x1
+ 239 000c F6          		.byte	0xf6
+ 240 000d F5          		.byte	0xf5
+ 241 000e 0A          		.byte	0xa
+ 242 000f 00          		.byte	0x0
+ 243 0010 01          		.byte	0x1
+ 244 0011 01          		.byte	0x1
+ 245 0012 01          		.byte	0x1
+ 246 0013 01          		.byte	0x1
+ 247 0014 00          		.byte	0x0
+ 248 0015 00          		.byte	0x0
+ 249 0016 00          		.byte	0x0
+ 250 0017 01          		.byte	0x1
+ 251 0018 00          		.byte	0x0
+ 252 0019 6D 61 69 6E 		.string	"main.c"
+ 252      2E 63 00 
+ 253 0020 00          		.byte	0x0
+ 254 0021 00          		.byte	0x0
+ 255 0022 00          		.byte	0x0
+ 256 0023 00          		.byte	0x0
+ 257                 	.LELTP0:
+ 258 0024 00          		.byte	0x0
+ 259 0025 03          		.byte	0x3
+ 260 0026 02          		.byte	0x2
+ 261 0027 00 00       		.2byte	.LM1
+ 262 0029 01          		.byte	0x1
+ 263 002a 00          		.byte	0x0
+ 264 002b 03          		.byte	0x3
+ 265 002c 02          		.byte	0x2
+ 266 002d 00 00       		.2byte	.LM2
+ 267 002f 15          		.byte	0x15
+ 268 0030 00          		.byte	0x0
+ 269 0031 03          		.byte	0x3
+ 270 0032 02          		.byte	0x2
+ 271 0033 00 00       		.2byte	.LM3
+ 272 0035 15          		.byte	0x15
+ 273 0036 00          		.byte	0x0
+ 274 0037 03          		.byte	0x3
+ 275 0038 02          		.byte	0x2
+ 276 0039 00 00       		.2byte	.LM4
+ 277 003b 15          		.byte	0x15
+ 278 003c 00          		.byte	0x0
+ 279 003d 03          		.byte	0x3
+ 280 003e 02          		.byte	0x2
+ 281 003f 00 00       		.2byte	.Letext0
+HMS800 series Assembler  /cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s 			page 6
+
+
+ 282 0041 00          		.byte	0x0
+ 283 0042 01          		.byte	0x1
+ 284 0043 01          		.byte	0x1
+ 285                 	.LELT0:
+ 286                 		.section	.debug_info
+ 287 0000 A8 00 00 00 		.4byte	0xa8
+ 288 0004 02 00       		.2byte	0x2
+ 289 0006 00 00 00 00 		.4byte	.Ldebug_abbrev0
+ 290 000a 02          		.byte	0x2
+ 291 000b 01          		.byte	0x1
+ 292 000c 00 00 00 00 		.4byte	.Ldebug_line0
+ 293 0010 00 00       		.2byte	.Letext0
+ 294 0012 00 00       		.2byte	.Ltext0
+ 295 0014 6D 61 69 6E 		.string	"main.c"
+ 295      2E 63 00 
+ 296 001b 63 3A 5C 55 		.string	"c:\\Users\\IEUser\\Desktop\\OpenUV3R\\Source"
+ 296      73 65 72 73 
+ 296      5C 49 45 55 
+ 296      73 65 72 5C 
+ 296      44 65 73 6B 
+ 297 0043 47 4E 55 20 		.string	"GNU C 3.0.0"
+ 297      43 20 33 2E 
+ 297      30 2E 30 00 
+ 298 004f 01          		.byte	0x1
+ 299 0050 02          		.byte	0x2
+ 300 0051 7C 00 00 00 		.4byte	0x7c
+ 301 0055 01          		.byte	0x1
+ 302 0056 6D 61 69 6E 		.string	"main"
+ 302      00 
+ 303 005b 01          		.byte	0x1
+ 304 005c 01          		.byte	0x1
+ 305 005d 01          		.byte	0x1
+ 306 005e 7C 00 00 00 		.4byte	0x7c
+ 307 0062 00 00       		.2byte	.LFB1
+ 308 0064 00 00       		.2byte	.LFE1
+ 309 0066 02          		.byte	0x2
+ 310 0067 90          		.byte	0x90
+ 311 0068 2A          		.byte	0x2a
+ 312 0069 03          		.byte	0x3
+ 313 006a 6D 65 73 73 		.string	"message"
+ 313      61 67 65 00 
+ 314 0072 01          		.byte	0x1
+ 315 0073 02          		.byte	0x2
+ 316 0074 83 00 00 00 		.4byte	0x83
+ 317 0078 02          		.byte	0x2
+ 318 0079 91          		.byte	0x91
+ 319 007a 01          		.byte	0x1
+ 320 007b 00          		.byte	0x0
+ 321 007c 04          		.byte	0x4
+ 322 007d 69 6E 74 00 		.string	"int"
+ 323 0081 02          		.byte	0x2
+ 324 0082 05          		.byte	0x5
+ 325 0083 05          		.byte	0x5
+ 326 0084 93 00 00 00 		.4byte	0x93
+ 327 0088 A3 00 00 00 		.4byte	0xa3
+ 328 008c 06          		.byte	0x6
+ 329 008d 93 00 00 00 		.4byte	0x93
+HMS800 series Assembler  /cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s 			page 7
+
+
+ 330 0091 0D          		.byte	0xd
+ 331 0092 00          		.byte	0x0
+ 332 0093 04          		.byte	0x4
+ 333 0094 75 6E 73 69 		.string	"unsigned int"
+ 333      67 6E 65 64 
+ 333      20 69 6E 74 
+ 333      00 
+ 334 00a1 02          		.byte	0x2
+ 335 00a2 07          		.byte	0x7
+ 336 00a3 04          		.byte	0x4
+ 337 00a4 63 68 61 72 		.string	"char"
+ 337      00 
+ 338 00a9 01          		.byte	0x1
+ 339 00aa 06          		.byte	0x6
+ 340 00ab 00          		.byte	0x0
+ 341                 		.section	.debug_abbrev
+ 342 0000 01          		.byte	0x1
+ 343 0001 11          		.byte	0x11
+ 344 0002 01          		.byte	0x1
+ 345 0003 10          		.byte	0x10
+ 346 0004 06          		.byte	0x6
+ 347 0005 12          		.byte	0x12
+ 348 0006 01          		.byte	0x1
+ 349 0007 11          		.byte	0x11
+ 350 0008 01          		.byte	0x1
+ 351 0009 03          		.byte	0x3
+ 352 000a 08          		.byte	0x8
+ 353 000b 1B          		.byte	0x1b
+ 354 000c 08          		.byte	0x8
+ 355 000d 25          		.byte	0x25
+ 356 000e 08          		.byte	0x8
+ 357 000f 13          		.byte	0x13
+ 358 0010 0B          		.byte	0xb
+ 359 0011 00          		.byte	0x0
+ 360 0012 00          		.byte	0x0
+ 361 0013 02          		.byte	0x2
+ 362 0014 2E          		.byte	0x2e
+ 363 0015 01          		.byte	0x1
+ 364 0016 01          		.byte	0x1
+ 365 0017 13          		.byte	0x13
+ 366 0018 3F          		.byte	0x3f
+ 367 0019 0C          		.byte	0xc
+ 368 001a 03          		.byte	0x3
+ 369 001b 08          		.byte	0x8
+ 370 001c 3A          		.byte	0x3a
+ 371 001d 0B          		.byte	0xb
+ 372 001e 3B          		.byte	0x3b
+ 373 001f 0B          		.byte	0xb
+ 374 0020 27          		.byte	0x27
+ 375 0021 0C          		.byte	0xc
+ 376 0022 49          		.byte	0x49
+ 377 0023 13          		.byte	0x13
+ 378 0024 11          		.byte	0x11
+ 379 0025 01          		.byte	0x1
+ 380 0026 12          		.byte	0x12
+ 381 0027 01          		.byte	0x1
+ 382 0028 40          		.byte	0x40
+HMS800 series Assembler  /cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s 			page 8
+
+
+ 383 0029 0A          		.byte	0xa
+ 384 002a 00          		.byte	0x0
+ 385 002b 00          		.byte	0x0
+ 386 002c 03          		.byte	0x3
+ 387 002d 34          		.byte	0x34
+ 388 002e 00          		.byte	0x0
+ 389 002f 03          		.byte	0x3
+ 390 0030 08          		.byte	0x8
+ 391 0031 3A          		.byte	0x3a
+ 392 0032 0B          		.byte	0xb
+ 393 0033 3B          		.byte	0x3b
+ 394 0034 0B          		.byte	0xb
+ 395 0035 49          		.byte	0x49
+ 396 0036 13          		.byte	0x13
+ 397 0037 02          		.byte	0x2
+ 398 0038 0A          		.byte	0xa
+ 399 0039 00          		.byte	0x0
+ 400 003a 00          		.byte	0x0
+ 401 003b 04          		.byte	0x4
+ 402 003c 24          		.byte	0x24
+ 403 003d 00          		.byte	0x0
+ 404 003e 03          		.byte	0x3
+ 405 003f 08          		.byte	0x8
+ 406 0040 0B          		.byte	0xb
+ 407 0041 0B          		.byte	0xb
+ 408 0042 3E          		.byte	0x3e
+ 409 0043 0B          		.byte	0xb
+ 410 0044 00          		.byte	0x0
+ 411 0045 00          		.byte	0x0
+ 412 0046 05          		.byte	0x5
+ 413 0047 01          		.byte	0x1
+ 414 0048 01          		.byte	0x1
+ 415 0049 01          		.byte	0x1
+ 416 004a 13          		.byte	0x13
+ 417 004b 49          		.byte	0x49
+ 418 004c 13          		.byte	0x13
+ 419 004d 00          		.byte	0x0
+ 420 004e 00          		.byte	0x0
+ 421 004f 06          		.byte	0x6
+ 422 0050 21          		.byte	0x21
+ 423 0051 00          		.byte	0x0
+ 424 0052 49          		.byte	0x49
+ 425 0053 13          		.byte	0x13
+ 426 0054 2F          		.byte	0x2f
+ 427 0055 0B          		.byte	0xb
+ 428 0056 00          		.byte	0x0
+ 429 0057 00          		.byte	0x0
+ 430 0058 00          		.byte	0x0
+ 431                 		.section	.debug_pubnames
+ 432 0000 17 00 00 00 		.4byte	0x17
+ 433 0004 02 00       		.2byte	0x2
+ 434 0006 00 00 00 00 		.4byte	.Ldebug_info0
+ 435 000a AC 00 00 00 		.4byte	0xac
+ 436 000e 50 00 00 00 		.4byte	0x50
+ 437 0012 6D 61 69 6E 		.string	"main"
+ 437      00 
+ 438 0017 00 00 00 00 		.4byte	0x0
+HMS800 series Assembler  /cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s 			page 9
+
+
+ 439                 		.section	.debug_aranges
+ 440 0000 10 00 00 00 		.4byte	0x10
+ 441 0004 02 00       		.2byte	0x2
+ 442 0006 00 00 00 00 		.4byte	.Ldebug_info0
+ 443 000a 02          		.byte	0x2
+ 444 000b 00          		.byte	0x0
+ 445 000c 00 00       		.2byte	.Ltext0
+ 446 000e 50 00       		.2byte	.Letext0-.Ltext0
+ 447 0010 00 00       		.2byte	0x0
+ 448 0012 00 00       		.2byte	0x0
+ 449                 		.sect	.data
+ 450                 		.ident	"HMS800-CC: 3.0.0"
+HMS800 series Assembler  /cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+                            *ABS*:000000fc _.DPGR
+                            *ABS*:000000cf _.RPR
+/cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s:149    .text:0000000e _main
+/cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s:151    .text:0000000e .LM1
+/cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s:174    .text:00000021 .LM2
+/cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s:202    .text:0000003c .LM3
+/cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s:208    .text:00000042 .LM4
+/cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s:230    .text:00000050 .Letext0
+/cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s:137    .text:00000000 .Ltext0
+/cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s:150    .text:0000000e .LFB1
+/cygdrive/c/Users/IEUser/AppData/Local/Temp/ccCJ7LB1.s:226    .text:00000050 .LFE1
+
+UNDEFINED SYMBOLS
+_.frame
+_.d5
+_.d3
+_.d7
+_.d1
+_memcpy

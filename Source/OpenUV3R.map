@@ -1,0 +1,427 @@
+Archive member included because of file (symbol)
+
+/cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/libc.a(memcpy.o)
+                              C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o (_memcpy)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+PAGE0            0x00000000         0x00000090         xrw
+PAGE1            0x00000100         0x00000100         xrw
+PAGE2            0x00000200         0x00000070         xrw
+text             0x0000c000         0x00003fdf         xr
+*default*        0x00000000         0xffffffff
+text2            0x00000000         0xffffffff
+text3            0x00000000         0xffffffff
+eeprom           0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x0000007f                PROVIDE (_stack, 0x7f)
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t.*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t.*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d.*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d.*)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r.*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r.*)
+
+.rel.sdata
+ *(.rel.sdata)
+ *(.rel.sdata.*)
+ *(.rel.gnu.linkonce.s.*)
+ *(.rel.sdata)
+
+.rela.sdata
+ *(.rela.sdata)
+ *(.rela.sdata.*)
+ *(.rela.gnu.linkonce.s.*)
+ *(.rela.sdata)
+
+.rel.sbss
+ *(.rel.sbss)
+ *(.rel.sbss.*)
+ *(.rel.gnu.linkonce.sb.*)
+
+.rela.sbss
+ *(.rela.sbss)
+ *(.rela.sbss.*)
+ *(.rel.gnu.linkonce.sb.*)
+
+.rel.bss
+ *(.rel.bss)
+ *(.rel.bss.*)
+ *(.rel.gnu.linkonce.b.*)
+
+.rela.bss
+ *(.rela.bss)
+ *(.rela.bss.*)
+ *(.rela.gnu.linkonce.b.*)
+
+.rela.stext
+ *(.rela.stest)
+
+.rela.etext
+ *(.rela.etest)
+
+.rela.edata
+ *(.rela.edata)
+
+.rela.eit_v
+ *(.rela.eit_v)
+
+.rela.ebss
+ *(.rela.ebss)
+
+.rela.srodata
+ *(.rela.srodata)
+
+.rela.erodata
+ *(.rela.erodata)
+
+.rela.got
+ *(.rela.got)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rela.init
+ *(.rela.init)
+
+.rela.fini
+ *(.rela.fini)
+
+.rela.plt
+ *(.rela.plt)
+
+.rel.stext
+ *(.rel.stest)
+
+.rel.etext
+ *(.rel.etest)
+
+.rel.edata
+ *(.rel.edata)
+
+.rel.ebss
+ *(.rel.ebss)
+
+.rel.eit_v
+ *(.rel.eit_v)
+
+.rel.srodata
+ *(.rel.srodata)
+
+.rel.erodata
+ *(.rel.erodata)
+
+.rel.got
+ *(.rel.got)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rel.init
+ *(.rel.init)
+
+.rel.fini
+ *(.rel.fini)
+
+.rel.plt
+ *(.rel.plt)
+
+.page0          0x00000000       0x14
+ *(PAGE0)
+ PAGE0          0x00000000       0x14 /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/crt108r.o
+                0x00000010                _.d5
+                0x0000000c                _.d1
+                0x0000000d                _.d2
+                0x00000008                _.tmp
+                0x00000013                _.d8
+                0x00000011                _.d6
+                0x00000004                _.HHI
+                0x0000000b                _.d32
+                0x00000002                _.AHI
+                0x0000000f                _.d4
+                0x00000012                _.d7
+                0x0000000e                _.d3
+                0x00000006                _.YHI
+                0x00000000                _.frame
+                0x0000000a                _.d31
+
+.page1
+ *(PAGE1)
+
+.page2
+ *(PAGE2)
+
+.init           0x0000c000       0x23
+ *(.init)
+ .init          0x0000c000       0x23 /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/crt108r.o
+                0x0000c000                _.start
+                0x0000c022                _.INT14
+                0x0000c006                _.AFTER_RAM_CLEAR
+                0x0000c022                __.INT0
+                0x0000c022                __.INT10
+                0x0000c022                _.INT5
+                0x0000c022                _.INT8
+                0x0000c022                _.INT11
+                0x0000c000                __.RESET
+                0x0000c022                _.INT10
+                0x0000c022                __.INT7
+                0x0000c022                __.INT8
+                0x0000c022                _.INT0
+                0x0000c022                _.INT2
+                0x0000c022                _.INT13
+                0x0000c022                _.INT6
+                0x0000c022                __.INT12
+                0x0000c022                __.INT4
+                0x0000c022                __.INT11
+                0x0000c022                __.INT6
+                0x0000c022                __.INT5
+                0x0000c022                __.INT1
+                0x0000c022                _.INT3
+                0x0000c022                __.INT9
+                0x0000c022                __.INT2
+                0x0000c022                _.INT7
+                0x0000c022                __.INT14
+                0x0000c000                _.RESET
+                0x0000c022                _.INT9
+                0x0000c022                __.INT13
+                0x0000c022                __.INT3
+                0x0000c022                _.NOT_USED
+                0x0000c022                _.INT1
+                0x0000c022                _.INT12
+                0x0000c0ff                _.STACK_LIMIT = 0xff
+                0x0000c001                _.STACK_LIMIT_UPPER = 0x1
+                0x0000c000                _.RAM_PAGE0_START_UPPER = 0x0
+                0x0000c000                _.RAM_PAGE0_START_LOWER = 0x0
+                0x0000c090                _.RAM_PAGE0_LENGTH = 0x90
+                0x0000c001                _.RAM_PAGE1_START_UPPER = 0x1
+                0x0000c000                _.RAM_PAGE1_START_LOWER = 0x0
+                0x0000c100                _.RAM_PAGE1_LENGTH = 0x100
+                0x0000c002                _.RAM_PAGE2_START_UPPER = 0x2
+                0x0000c000                _.RAM_PAGE2_START_LOWER = 0x0
+                0x0000c070                _.RAM_PAGE2_LENGTH = 0x70
+                0x0000c022                _.INT4 = _.NOT_USED
+                0x0000c000                _.INT15 = _.RESET
+
+.stext
+ *(.stext)
+
+.text           0x0000c023       0xca
+ *(.install0)
+ *(.install1)
+ *(.install2)
+ *(.install3)
+ *(.install4)
+ *(.init)
+ *(.text)
+ .text          0x0000c023       0x32 /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/ram_clr2.o
+                0x0000c023                _.RAM_CLEAR
+ .text          0x0000c055       0x50 C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+                0x0000c063                _main
+ .text          0x0000c0a5       0x45 /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/libc.a(memcpy.o)
+                0x0000c0a5                _memcpy
+ *(.text.*)
+ *(.gnu.warning)
+ *(.gnu.linkonce.t.*)
+ *(.fini0)
+ .fini0         0x0000c0ea        0x3 /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/crt108r.o
+ *(.fini1)
+ *(.fini2)
+ *(.fini3)
+ *(.fini4)
+                0x0000c0ed                _etext = .
+                0x0000c0ed                PROVIDE (etext, .)
+
+.text2
+ *(TEXT2)
+
+.text3
+ *(TEXT3)
+
+.eh_frame
+ *(.eh_frame)
+
+.rodata
+ *(.rodata)
+ *(.rodata.*)
+ *(.gnu.linkonce.r*)
+
+.rodata1
+ *(.rodata1)
+
+.ctors          0x0000c0ed        0x0
+                0x0000c0ed                PROVIDE (__CTOR_LIST__, .)
+ *(.ctors)
+                0x0000c0ed                PROVIDE (__CTOR_END__, .)
+
+.dtors          0x0000c0ed        0x0
+                0x0000c0ed                PROVIDE (__DTOR_LIST__, .)
+ *(.dtors)
+                0x0000c0ed                PROVIDE (__DTOR_END__, .)
+
+.jcr
+ *(.jcr)
+                0x0000c0ed                __data_image = .
+                0x0000c0ed                PROVIDE (__data_image, .)
+
+.data           0x00000014        0x0 load address 0x0000c0ed
+                0x00000014                __data_section_start = .
+                0x00000014                PROVIDE (__data_section_start, .)
+ *(.sdata)
+ *(.data)
+ *(.data.*)
+ *(.data1)
+ *(.gnu.linkonce.d.*)
+                0x00000014                _edata = .
+                0x00000014                PROVIDE (edata, .)
+                0x00000000                __data_section_size =  SIZEOF (.data)
+                0x00000000                PROVIDE (__data_section_size,  SIZEOF (.data))
+                0x0000c0ed                __data_image_end = (__data_image + __data_section_size)
+
+.bss            0x00000014        0x0
+                0x00000014                __bss_start = .
+ *(.sbss)
+ *(.scommon)
+ *(.dynbss)
+ *(.bss)
+ *(.bss.*)
+ *(.gnu.linkonce.b.*)
+ *(COMMON)
+                0x00000014                PROVIDE (_end, .)
+                0x00000000                __bss_size =  SIZEOF (.bss)
+                0x00000000                PROVIDE (__bss_size,  SIZEOF (.bss))
+
+.eeprom
+ *(.eeprom)
+ *(.eeprom.*)
+                0x0000ffe0                PROVIDE (_vectors_addr,  DEFINED (vectors_addr)?vectors_addr:0xffe0)
+
+.vectors        0x0000ffe0       0x20
+ *(.vectors)
+ .vectors       0x0000ffe0       0x20 /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/crt108r.o
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0x24
+ *(.comment)
+ .comment       0x00000000       0x12 C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+ .comment       0x00000012       0x12 /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/libc.a(memcpy.o)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0x14
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x14 C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+
+.debug_pubnames
+                0x00000000       0x1b
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0x1b C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+
+.debug_info     0x00000000       0xac
+ *(.debug_info)
+ .debug_info    0x00000000       0xac C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000       0x59
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0x59 C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+
+.debug_line     0x00000000       0x44
+ *(.debug_line)
+ .debug_line    0x00000000       0x44 C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+LOAD /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/ram_clr2.o
+LOAD C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+LOAD /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/libc.a
+LOAD /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/crt108r.o
+OUTPUT(C:\Users\IEUser\Desktop\OpenUV3R\Build\OpenUV3R.out elf32-hms800)

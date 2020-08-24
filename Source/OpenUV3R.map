@@ -256,7 +256,7 @@ Linker script and memory map
 .stext
  *(.stext)
 
-.text           0x0000c023       0xca
+.text           0x0000c023      0x2ed
  *(.install0)
  *(.install1)
  *(.install2)
@@ -266,21 +266,38 @@ Linker script and memory map
  *(.text)
  .text          0x0000c023       0x32 /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/ram_clr2.o
                 0x0000c023                _.RAM_CLEAR
- .text          0x0000c055       0x50 C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
-                0x0000c063                _main
- .text          0x0000c0a5       0x45 /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/libc.a(memcpy.o)
-                0x0000c0a5                _memcpy
+ .text          0x0000c055       0x7d C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+                0x0000c073                _clock_init
+                0x0000c055                _delay
+                0x0000c07e                _main
+ .text          0x0000c0d2      0x182 C:\Users\IEUser\Desktop\OpenUV3R\Objects\lcd.o
+                0x0000c1d6                _lcd_enable
+                0x0000c20b                _lcd_disable
+                0x0000c244                _lcd_init
+                0x0000c0d2                _lcd_subclock_enable
+                0x0000c1b5                _lcd_clock_256hz
+                0x0000c107                _lcd_subclock_disable
+                0x0000c1c2                _lcd_clock_512hz
+                0x0000c1ae                _lcd_clock_128hz
+                0x0000c179                _lcd_14_duty
+                0x0000c1cf                _lcd_clock_1024hz
+                0x0000c140                _lcd_18_duty
+ .text          0x0000c254       0x74 C:\Users\IEUser\Desktop\OpenUV3R\Objects\uart.o
+                0x0000c254                _uart_init
+                0x0000c27e                _uart_tx
+ .text          0x0000c2c8       0x45 /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/libc.a(memcpy.o)
+                0x0000c2c8                _memcpy
  *(.text.*)
  *(.gnu.warning)
  *(.gnu.linkonce.t.*)
  *(.fini0)
- .fini0         0x0000c0ea        0x3 /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/crt108r.o
+ .fini0         0x0000c30d        0x3 /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/crt108r.o
  *(.fini1)
  *(.fini2)
  *(.fini3)
  *(.fini4)
-                0x0000c0ed                _etext = .
-                0x0000c0ed                PROVIDE (etext, .)
+                0x0000c310                _etext = .
+                0x0000c310                PROVIDE (etext, .)
 
 .text2
  *(TEXT2)
@@ -299,22 +316,22 @@ Linker script and memory map
 .rodata1
  *(.rodata1)
 
-.ctors          0x0000c0ed        0x0
-                0x0000c0ed                PROVIDE (__CTOR_LIST__, .)
+.ctors          0x0000c310        0x0
+                0x0000c310                PROVIDE (__CTOR_LIST__, .)
  *(.ctors)
-                0x0000c0ed                PROVIDE (__CTOR_END__, .)
+                0x0000c310                PROVIDE (__CTOR_END__, .)
 
-.dtors          0x0000c0ed        0x0
-                0x0000c0ed                PROVIDE (__DTOR_LIST__, .)
+.dtors          0x0000c310        0x0
+                0x0000c310                PROVIDE (__DTOR_LIST__, .)
  *(.dtors)
-                0x0000c0ed                PROVIDE (__DTOR_END__, .)
+                0x0000c310                PROVIDE (__DTOR_END__, .)
 
 .jcr
  *(.jcr)
-                0x0000c0ed                __data_image = .
-                0x0000c0ed                PROVIDE (__data_image, .)
+                0x0000c310                __data_image = .
+                0x0000c310                PROVIDE (__data_image, .)
 
-.data           0x00000014        0x0 load address 0x0000c0ed
+.data           0x00000014        0x0 load address 0x0000c310
                 0x00000014                __data_section_start = .
                 0x00000014                PROVIDE (__data_section_start, .)
  *(.sdata)
@@ -326,7 +343,7 @@ Linker script and memory map
                 0x00000014                PROVIDE (edata, .)
                 0x00000000                __data_section_size =  SIZEOF (.data)
                 0x00000000                PROVIDE (__data_section_size,  SIZEOF (.data))
-                0x0000c0ed                __data_image_end = (__data_image + __data_section_size)
+                0x0000c310                __data_image_end = (__data_image + __data_section_size)
 
 .bss            0x00000014        0x0
                 0x00000014                __bss_start = .
@@ -368,10 +385,12 @@ Linker script and memory map
 .stab.indexstr
  *(.stab.indexstr)
 
-.comment        0x00000000       0x24
+.comment        0x00000000       0x48
  *(.comment)
  .comment       0x00000000       0x12 C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
- .comment       0x00000012       0x12 /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/libc.a(memcpy.o)
+ .comment       0x00000012       0x12 C:\Users\IEUser\Desktop\OpenUV3R\Objects\lcd.o
+ .comment       0x00000024       0x12 C:\Users\IEUser\Desktop\OpenUV3R\Objects\uart.o
+ .comment       0x00000036       0x12 /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/libc.a(memcpy.o)
 
 .debug
  *(.debug)
@@ -385,29 +404,43 @@ Linker script and memory map
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x14
+.debug_aranges  0x00000000       0x3c
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x14 C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+ .debug_aranges
+                0x00000014       0x14 C:\Users\IEUser\Desktop\OpenUV3R\Objects\lcd.o
+ .debug_aranges
+                0x00000028       0x14 C:\Users\IEUser\Desktop\OpenUV3R\Objects\uart.o
 
 .debug_pubnames
-                0x00000000       0x1b
+                0x00000000     0x2c36
  *(.debug_pubnames)
  .debug_pubnames
-                0x00000000       0x1b C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+                0x00000000      0xe86 C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+ .debug_pubnames
+                0x00000e86      0xf32 C:\Users\IEUser\Desktop\OpenUV3R\Objects\lcd.o
+ .debug_pubnames
+                0x00001db8      0xe7e C:\Users\IEUser\Desktop\OpenUV3R\Objects\uart.o
 
-.debug_info     0x00000000       0xac
+.debug_info     0x00000000     0x7002
  *(.debug_info)
- .debug_info    0x00000000       0xac C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+ .debug_info    0x00000000     0x2703 C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+ .debug_info    0x00002703     0x24d8 C:\Users\IEUser\Desktop\OpenUV3R\Objects\lcd.o
+ .debug_info    0x00004bdb     0x2427 C:\Users\IEUser\Desktop\OpenUV3R\Objects\uart.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x00000000       0x59
+.debug_abbrev   0x00000000      0x1fc
  *(.debug_abbrev)
- .debug_abbrev  0x00000000       0x59 C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+ .debug_abbrev  0x00000000      0x108 C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+ .debug_abbrev  0x00000108       0x5b C:\Users\IEUser\Desktop\OpenUV3R\Objects\lcd.o
+ .debug_abbrev  0x00000163       0x99 C:\Users\IEUser\Desktop\OpenUV3R\Objects\uart.o
 
-.debug_line     0x00000000       0x44
+.debug_line     0x00000000      0x2c1
  *(.debug_line)
- .debug_line    0x00000000       0x44 C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+ .debug_line    0x00000000       0xec C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+ .debug_line    0x000000ec      0x141 C:\Users\IEUser\Desktop\OpenUV3R\Objects\lcd.o
+ .debug_line    0x0000022d       0x94 C:\Users\IEUser\Desktop\OpenUV3R\Objects\uart.o
 
 .debug_frame
  *(.debug_frame)
@@ -422,6 +455,8 @@ Linker script and memory map
  *(.debug_macinfo)
 LOAD /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/ram_clr2.o
 LOAD C:\Users\IEUser\Desktop\OpenUV3R\Objects\main.o
+LOAD C:\Users\IEUser\Desktop\OpenUV3R\Objects\lcd.o
+LOAD C:\Users\IEUser\Desktop\OpenUV3R\Objects\uart.o
 LOAD /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/libc.a
 LOAD /cygdrive/c/HMS800C/bin/../lib/gcc-lib/hms800-elf/3.0.0/crt108r.o
 OUTPUT(C:\Users\IEUser\Desktop\OpenUV3R\Build\OpenUV3R.out elf32-hms800)
